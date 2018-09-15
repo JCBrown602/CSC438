@@ -12,8 +12,8 @@ https://azure.microsoft.com/en-us/services/cognitive-services/face/
 # CLASSES
 ## JARVIS
 
-## Aesthetics
+## FaceDataDisplay
 
 ## FileIO
 
-## FaceDataDisplay
+## Aesthetics
