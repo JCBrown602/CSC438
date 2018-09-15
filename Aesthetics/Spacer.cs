@@ -1,9 +1,8 @@
 ﻿/***********************************************************************
  * Spacer.cs
- * Recreation of the Spacer class specifically for CMD line version of
- * ARC (A Real CRM). Currently a WIP while DNS and file IO functionality 
- * take priority. This Aesthetics project has been useful on several of my
- * projects for making the console output easier to read.
+ * Copy of the Spacer class from my original Aesthetics project. This project 
+ * has been useful on several of my projects for making the console output 
+ * easier to read.
  * 
  * 15 AUG 2017 ~ Jason C. Brown
  ***********************************************************************/ 
