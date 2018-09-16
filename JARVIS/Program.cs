@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Aesthetics;
 using FileIO;
 using FaceDataDisplay;
+using DebugTools;
 
 
 namespace JARVIS
@@ -39,30 +40,38 @@ namespace JARVIS
             sp.ShowSpacer('=');
             Console.WriteLine();
             FileHandler fh = new FileHandler();
-            fh.Display();
+            FaceDisplayClass fd = new FaceDisplayClass();
+            fh.DisplayFile();
+            fd.DisplayFaceData();
 
+            Console.WriteLine("> Press any key to continue.");
+            Console.ReadKey();
+            XDebug xd = new XDebug();
+            xd.ShowCheck();
 
-        //    if (File.Exists(imageFilePath))
-        //    {
-        //        // Execute the REST API call.
-        //        try
-        //        {
-        //            MakeAnalysisRequest(imageFilePath);
-        //            Console.WriteLine("\nWait a moment for the results to appear.\n");
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Console.WriteLine("\n" + e.Message + "\nPress Enter to exit...\n");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("\nInvalid file path.\nPress Enter to exit...\n");
-        //    }
-        //    Console.ReadLine();
+            #region REST API Call
+            //if (File.Exists(imageFilePath))
+            //{
+            //    // Execute the REST API call.
+            //    try
+            //    {
+            //        MakeAnalysisRequest(imageFilePath);
+            //        Console.WriteLine("\nWait a moment for the results to appear.\n");
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine("\n" + e.Message + "\nPress Enter to exit...\n");
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("\nInvalid file path.\nPress Enter to exit...\n");
+            //}
+            //Console.ReadLine();
+            #endregion
         }
 
-
+        #region MakeAnalysisRequest()
         /// <summary>
         /// Gets the analysis of the specified image by using the Face REST API.
         /// </summary>
@@ -129,17 +138,9 @@ namespace JARVIS
                 Console.WriteLine("\nPress Enter to exit...");
             }
         }
+        #endregion
 
-        public static void RunDebug()
-        {
-
-        }
-
-        public static void BuildDebug()
-        {
-
-        }
-
+        #region GetImageAsByteArray()
         /// <summary>
         /// Returns the contents of the specified file as a byte array.
         /// </summary>
@@ -154,7 +155,9 @@ namespace JARVIS
                 return binaryReader.ReadBytes((int)fileStream.Length);
             }
         }
+        #endregion
 
+        #region JsonPrettyPrint()
         /// <summary>
         /// Formats the given JSON string by adding line breaks and indents.
         /// </summary>
@@ -222,5 +225,6 @@ namespace JARVIS
 
             return sb.ToString().Trim();
         }
+        #endregion
     }
 }

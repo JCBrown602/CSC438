@@ -10,11 +10,13 @@ using System;
 
 namespace Aesthetics
 {
+    #region SPACER CLASS
     public class Spacer
     {
         #region Properties
         //private char _char   = '*';
         //private int _numChar = 75;
+        private string tagLine = ">>* ALL HAIL THE HYPNOTOAD! *<<";
         #endregion
 
         #region Constructors
@@ -40,6 +42,7 @@ namespace Aesthetics
         #region Getters & Setters
         public char Char { get; set; }
         public int NumChar { get; set; }
+        public string TagLine { get; set; }
         //public char Char { get => _char; set => _char = value; } = '*';
         //public int NumChar { get => _numChar; set => _numChar = value; } = 50;
         #endregion
@@ -48,6 +51,7 @@ namespace Aesthetics
         public void DisplayHeader(string title)
         {
             int width = Console.WindowWidth;
+            Console.Clear();
             Console.Title = title;
             Console.ForegroundColor = ConsoleColor.Green;
             Spacer sp = new Spacer((char)22, Console.WindowWidth);
@@ -67,15 +71,26 @@ namespace Aesthetics
 
         public void DisplayHeader(char aChar, string title)
         {
+            BaseHeader(aChar, title, tagLine);
+        }
+
+        public void BaseHeader(char aChar, string title, string tagLine)
+        {
+            int width = Console.WindowWidth;
+            Console.Clear();
+            Console.Title = title;
             Console.ForegroundColor = ConsoleColor.Green;
-            this.NumChar = Console.WindowWidth;
-            Spacer sp = new Spacer((char)22);
-            string tagLine = ">>> ALL HAIL THE HYPNO TOAD! <<<";
+            Spacer sp = new Spacer(aChar, Console.WindowWidth);
 
             sp.ShowSpacer();
-            Console.SetCursorPosition((Console.WindowWidth - title.Length) / 2, Console.CursorTop);
+            Console.SetCursorPosition((width - title.Length) / 2, Console.CursorTop);
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(title);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.SetCursorPosition((width - tagLine.Length) / 2, Console.CursorTop);
+            Console.WriteLine(tagLine);
             sp.ShowSpacer();
+
             Console.ResetColor();
         }
 
@@ -174,6 +189,25 @@ namespace Aesthetics
         }
         #endregion
     }
+    #endregion
+
+    #region HEADER CLASS
+    public class Header
+    {
+        #region Properties
+        #endregion
+
+        #region Constructors
+        #endregion
+
+        #region Getters & Setters
+        #endregion
+
+        #region Methods
+        #endregion
+
+    }
+    #endregion
 
     #region EXPERIMENTAL / LEARNING / TESTING
     /* Experimenting with inheritance... 

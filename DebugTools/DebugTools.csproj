@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DebugTools</RootNamespace>
     <AssemblyName>DebugTools</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,18 +49,6 @@
     <ProjectReference Include="..\Aesthetics\Aesthetics.csproj">
       <Project>{05cc0cbb-a408-4ab5-a69c-a7c9a00a8222}</Project>
       <Name>Aesthetics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FaceDataDisplay\FaceDataDisplay.csproj">
-      <Project>{2a8a1d8e-8bd5-448f-a544-ceabebf66437}</Project>
-      <Name>FaceDataDisplay</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FileIO\FileIO.csproj">
-      <Project>{3b2e7a5e-bf95-4975-b0c1-f98e23b75fbd}</Project>
-      <Name>FileIO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JARVIS\JARVIS.csproj">
-      <Project>{a4482683-9c6c-47f0-8245-894f73e7e525}</Project>
-      <Name>JARVIS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

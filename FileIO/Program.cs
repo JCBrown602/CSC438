@@ -17,7 +17,7 @@ namespace FileIO
         #endregion
 
         #region Methods
-        public void Display()
+        public void DisplayFile()
         {
             Console.WriteLine("> FileHandler class check.");
         }

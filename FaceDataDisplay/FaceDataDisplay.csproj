@@ -7,4 +7,8 @@
     <StartupObject />
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Aesthetics\Aesthetics.csproj" />
+  </ItemGroup>
+
 </Project>

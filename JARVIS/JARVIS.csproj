@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aesthetics\Aesthetics.csproj" />
+    <ProjectReference Include="..\DebugTools\DebugTools.csproj" />
     <ProjectReference Include="..\FaceDataDisplay\FaceDataDisplay.csproj" />
     <ProjectReference Include="..\FileIO\FileIO.csproj" />
   </ItemGroup>
