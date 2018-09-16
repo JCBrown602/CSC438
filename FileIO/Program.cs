@@ -2,11 +2,25 @@
 
 namespace FileIO
 {
-    class Program
+    //class Program
+    //{
+    //    static void Main(string[] args)
+    //    {
+    //        Console.WriteLine("Hello World!");
+    //    }
+    //}
+
+    public class FileHandler
     {
-        static void Main(string[] args)
+        #region Constructors
+        public FileHandler() { }
+        #endregion
+
+        #region Methods
+        public void Display()
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("> FileHandler class check.");
         }
+        #endregion
     }
 }

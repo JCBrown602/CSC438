@@ -2,11 +2,22 @@
 
 namespace FaceDataDisplay
 {
-    class Program
+    //class Program
+    //{
+    //    static void Main(string[] args)
+    //    {
+    //        Console.WriteLine("Hello World!");
+    //    }
+    //}
+
+    public class FaceDisplayClass
     {
-        static void Main(string[] args)
+        public FaceDisplayClass() { }
+
+        public void DisplayFaceData()
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("> FaceDisplayClass check.");
         }
+
     }
 }

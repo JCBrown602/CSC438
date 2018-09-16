@@ -6,11 +6,18 @@ using System.Text;
 
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Aesthetics;
+using FileIO;
+using FaceDataDisplay;
+
 
 namespace JARVIS
 {
     static class Program
     {
+#if DEBUG
+        private static readonly bool RunDebugCode = true;
+#endif
         const string subscriptionKey = "2e77aaf63e4346a8b3820d03d396624b";
 
         // NOTE: Region must be 'westcentralus' for free/PAYGO keys
@@ -19,30 +26,40 @@ namespace JARVIS
 
         static void Main()
         {
+            Spacer sp = new Spacer('*');
+
             // Get the path and filename to process from the user.
-            Console.WriteLine("Detect faces:");
+            sp.DisplayHeader("DETECT FACES");
             Console.Write(
                 "Enter the path to an image with faces that you wish to analyze: ");
             string imageFilePath = "H:/UAT/2018/FALL/pipe.jpg"; //Console.ReadLine();
 
-            if (File.Exists(imageFilePath))
-            {
-                // Execute the REST API call.
-                try
-                {
-                    MakeAnalysisRequest(imageFilePath);
-                    Console.WriteLine("\nWait a moment for the results to appear.\n");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("\n" + e.Message + "\nPress Enter to exit...\n");
-                }
-            }
-            else
-            {
-                Console.WriteLine("\nInvalid file path.\nPress Enter to exit...\n");
-            }
-            Console.ReadLine();
+            // DEBUG: Testing aux projects
+            Console.WriteLine();
+            sp.ShowSpacer('=');
+            Console.WriteLine();
+            FileHandler fh = new FileHandler();
+            fh.Display();
+
+
+        //    if (File.Exists(imageFilePath))
+        //    {
+        //        // Execute the REST API call.
+        //        try
+        //        {
+        //            MakeAnalysisRequest(imageFilePath);
+        //            Console.WriteLine("\nWait a moment for the results to appear.\n");
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine("\n" + e.Message + "\nPress Enter to exit...\n");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("\nInvalid file path.\nPress Enter to exit...\n");
+        //    }
+        //    Console.ReadLine();
         }
 
 
@@ -113,6 +130,15 @@ namespace JARVIS
             }
         }
 
+        public static void RunDebug()
+        {
+
+        }
+
+        public static void BuildDebug()
+        {
+
+        }
 
         /// <summary>
         /// Returns the contents of the specified file as a byte array.

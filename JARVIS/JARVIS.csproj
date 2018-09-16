@@ -9,4 +9,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Aesthetics\Aesthetics.csproj" />
+    <ProjectReference Include="..\FaceDataDisplay\FaceDataDisplay.csproj" />
+    <ProjectReference Include="..\FileIO\FileIO.csproj" />
+  </ItemGroup>
+
 </Project>
