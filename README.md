@@ -1,4 +1,4 @@
-# CSC438 Project :octocat:
+# CSC438 Project
 
 University of Advancing Technology  
 CSC438 AI - FALL 2018  
@@ -43,3 +43,4 @@ JARVIS (Main App) | .NET Core 2.1 | YES
 ** Identify faces in a YouTube video
 ** ID faces in a movie and compare them to faces in a database to ID the actor
  
+<center> :octocat: </center>
