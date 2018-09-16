@@ -42,4 +42,4 @@ JARVIS (Main App) | .NET Core 2.1 | YES
 * Can this scan videos, or an area of the screen?
 ** Identify faces in a YouTube video
 ** ID faces in a movie and compare them to faces in a database to ID the actor
- 
+<center> :octocat: </center>
