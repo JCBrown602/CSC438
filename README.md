@@ -1,10 +1,10 @@
 # CSC438 Project :octocat:
 
-University of Advancing Technology
-CSC438 AI - FALL 2018
-Professor: Tony Hinton
-Student: Jason Brown
-14 September, 2018
+University of Advancing Technology  
+CSC438 AI - FALL 2018  
+Professor: Tony Hinton  
+Student: Jason Brown  
+14 September, 2018  
  
 REF source code examples from Microsoft:
 https://azure.microsoft.com/en-us/services/cognitive-services/face/
@@ -17,7 +17,7 @@ Aesthetics project was from previous work and I mistakenly added new projects to
 issue for me. 
 
 The following is a list of the frameworks for each project and their test status
-as of b87dfef0. I'm planning on leaving things as they are since the Face API executes
+as of #[b87dfef0](https://github.com/JCBrown602/CSC438/commit/d5ca917ba38451a7f9727a85ee20f52fa872dc28). I'm planning on leaving things as they are since the Face API executes
 successfully. If the untested projects are troublesome, they can be recreated easily or simply
 removed.
 
