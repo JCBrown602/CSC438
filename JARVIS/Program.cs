@@ -16,9 +16,6 @@ namespace JARVIS
 {
     static class Program
     {
-#if DEBUG
-        private static readonly bool RunDebugCode = true;
-#endif
         const string subscriptionKey = "2e77aaf63e4346a8b3820d03d396624b";
 
         // NOTE: Region must be 'westcentralus' for free/PAYGO keys
@@ -28,9 +25,10 @@ namespace JARVIS
         static void Main()
         {
             Spacer sp = new Spacer('*');
+            Header header = new Header(">>> NEW HEADER CLASS <<<");
 
             // Get the path and filename to process from the user.
-            sp.DisplayHeader("DETECT FACES");
+            header.DisplayHeader();
             Console.Write(
                 "Enter the path to an image with faces that you wish to analyze: ");
             string imageFilePath = "H:/UAT/2018/FALL/pipe.jpg"; //Console.ReadLine();

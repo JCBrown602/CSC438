@@ -11,10 +11,11 @@ namespace DebugTools
     public class XDebug
     {
         Spacer sp = new Spacer();
+        Header hd = new Header();
 
         public void ShowCheck()
         {
-            sp.DisplayHeader('*',"CHECKING SUPPORT PROJECTS");
+            hd.DisplayHeader("CHECKING SUPPORT PROJECTS");
         }
     }
 }
