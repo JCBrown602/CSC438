@@ -13,10 +13,12 @@ namespace Aesthetics
     #region SPACER CLASS
     public class Spacer
     {
-        #region Properties
-        //private char _char   = '*';
-        //private int _numChar = 75;
-        private string tagLine = ">>* ALL HAIL THE HYPNOTOAD! *<<";
+        #region Getters & Setters
+        public char Char { get; set; } = '*';
+        public int NumChar { get; set; } = 50;
+        public string TagLine { get; set; } = ">>> ALL HAIL THE HYPNO TOAD! <<<";
+        //public char Char { get => _char; set => _char = value; } = '*';
+        //public int NumChar { get => _numChar; set => _numChar = value; } = 50;
         #endregion
 
         #region Constructors
@@ -28,71 +30,19 @@ namespace Aesthetics
         }
         public Spacer(char char1) : this(char1, 75) { }
         public Spacer() : this('*') { }
-
         public Spacer(int rndInt)
         {
             this.NumChar = 75;
             this.Char    = (char)rndInt; // This makes ASCII chars...
 #if SPACER
+            // DEBUG:
             Console.WriteLine("\t>> CTOR: Spacer(int rndInt) <<");
 #endif
         }
         #endregion
 
-        #region Getters & Setters
-        public char Char { get; set; }
-        public int NumChar { get; set; }
-        public string TagLine { get; set; }
-        //public char Char { get => _char; set => _char = value; } = '*';
-        //public int NumChar { get => _numChar; set => _numChar = value; } = 50;
-        #endregion
-
         #region Methods
-        public void DisplayHeader(string title)
-        {
-            int width = Console.WindowWidth;
-            Console.Clear();
-            Console.Title = title;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Spacer sp = new Spacer((char)22, Console.WindowWidth);
-            string tagLine = ">>> ALL HAIL THE HYPNO TOAD! <<<";
-
-            sp.ShowSpacer();
-            Console.SetCursorPosition((width - title.Length) / 2, Console.CursorTop);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(title);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition((width - tagLine.Length) / 2, Console.CursorTop);
-            Console.WriteLine(tagLine);
-            sp.ShowSpacer();
-
-            Console.ResetColor();
-        }
-
-        public void DisplayHeader(char aChar, string title)
-        {
-            BaseHeader(aChar, title, tagLine);
-        }
-
-        public void BaseHeader(char aChar, string title, string tagLine)
-        {
-            int width = Console.WindowWidth;
-            Console.Clear();
-            Console.Title = title;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Spacer sp = new Spacer(aChar, Console.WindowWidth);
-
-            sp.ShowSpacer();
-            Console.SetCursorPosition((width - title.Length) / 2, Console.CursorTop);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(title);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition((width - tagLine.Length) / 2, Console.CursorTop);
-            Console.WriteLine(tagLine);
-            sp.ShowSpacer();
-
-            Console.ResetColor();
-        }
+       
 
         public void ShowSpacer()
         {
@@ -191,23 +141,6 @@ namespace Aesthetics
     }
     #endregion
 
-    #region HEADER CLASS
-    public class Header
-    {
-        #region Properties
-        #endregion
-
-        #region Constructors
-        #endregion
-
-        #region Getters & Setters
-        #endregion
-
-        #region Methods
-        #endregion
-
-    }
-    #endregion
 
     #region EXPERIMENTAL / LEARNING / TESTING
     /* Experimenting with inheritance... 
