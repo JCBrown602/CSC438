@@ -17,5 +17,10 @@ namespace DebugTools
         {
             hd.DisplayHeader("CHECKING SUPPORT PROJECTS");
         }
+
+        public void ShowCheck(Object[] supportProjects)
+        {
+
+        }
     }
 }
