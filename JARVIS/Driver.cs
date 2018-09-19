@@ -5,16 +5,16 @@ using System.Net.Http.Headers;
 using System.Text;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using Aesthetics;
 using FileIO;
-using FaceDataDisplay;
 using DebugTools;
 
 
-namespace JARVIS
+namespace GUARDIAN
 {
-    static class Program
+    static class Driver
     {
         const string subscriptionKey = "2e77aaf63e4346a8b3820d03d396624b";
 
@@ -31,7 +31,7 @@ namespace JARVIS
             header.DisplayHeader();
             Console.Write(
                 "Enter the path to an image with faces that you wish to analyze: ");
-            string imageFilePath = @"C:\Users\Administrator\source\repos\JARVIS2\CSC438\contentString.txt"; //Console.ReadLine();
+            string imageFilePath = @"C:\Users\Administrator\source\repos\JARVIS2\CSC438\faces\faceCollection.json"; //Console.ReadLine();
             Console.Write(imageFilePath); // DEBUG: skipping user input for now
 
             // DEBUG: Testing aux projects
@@ -45,28 +45,31 @@ namespace JARVIS
             xd.ShowCheck();
 
             FileHandler fh = new FileHandler();
-            FaceDisplayClass fd = new FaceDisplayClass();
-            fh.DisplayFile();
+            FaceDataDisplay fd = new FaceDataDisplay();
             fd.DisplayFaceData();
 
+            string fileText = fh.GetFile(imageFilePath);
+            List<Face> faceList = JsonConvert.DeserializeObject<List<Face>>(fileText);
+            Console.WriteLine("\n>>> First faceID in faceList: {0}", faceList[0].faceId);
+
             #region REST API Call
-            if (File.Exists(imageFilePath))
-            {
-                // Execute the REST API call.
-                try
-                {
-                    Console.WriteLine("\nPlease wait a moment for the results to appear.\n");
-                    MakeAnalysisRequest(imageFilePath);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("\n" + e.Message + "\nPress Enter to exit...\n");
-                }
-            }
-            else
-            {
-                Console.WriteLine("\nInvalid file path.\nPress Enter to exit...\n");
-            }
+            //if (File.Exists(imageFilePath))
+            //{
+            //    // Execute the REST API call.
+            //    try
+            //    {
+            //        Console.WriteLine("\nPlease wait a moment for the results to appear.\n");
+            //        MakeAnalysisRequest(imageFilePath);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine("\n" + e.Message + "\nPress Enter to exit...\n");
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("\nInvalid file path.\nPress Enter to exit...\n");
+            //}
             Console.ReadLine();
             #endregion
         }
@@ -78,72 +81,73 @@ namespace JARVIS
         /// <param name="imageFilePath">The image file.</param>
         static async void MakeAnalysisRequest(string imageFilePath)
         {
-            // DEBUG: Commenting out API call to reduce spamming API calls during testing.
-            // Replacing with sample file of previous API response.
+            // DEBUG: Adding some file storage capability to decrease API calls.
             FileHandler fh = new FileHandler();
             string fileText = fh.GetFile(imageFilePath);
-            fh.CreateFile(fileText);
+            //fh.CreateFile(fileText);
 
-            Console.Write(JsonPrettyPrint(fileText));
+            //Console.Write(JsonPrettyPrint(fileText));
 
-            //HttpClient client = new HttpClient();
+            HttpClient client = new HttpClient();
 
-            //// Request headers.
-            //client.DefaultRequestHeaders.Add(
-            //    "Ocp-Apim-Subscription-Key", subscriptionKey);
+            // Request headers.
+            client.DefaultRequestHeaders.Add(
+                "Ocp-Apim-Subscription-Key", subscriptionKey);
 
-            //// Request parameters. A third optional parameter is "details".
-            //string requestParameters = "returnFaceId=true&returnFaceLandmarks=false" +
-            //    "&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses," +
-            //    "emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
+            // Request parameters. A third optional parameter is "details".
+            string requestParameters = "returnFaceId=true&returnFaceLandmarks=false" +
+                "&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses," +
+                "emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
 
-            //// Assemble the URI for the REST API Call.
-            //string uri = uriBase + "?" + requestParameters;
+            // Assemble the URI for the REST API Call.
+            string uri = uriBase + "?" + requestParameters;
 
-            //HttpResponseMessage response;
+            HttpResponseMessage response;
 
-            //// Request body. Posts a locally stored JPEG image.
-            //byte[] byteData = GetImageAsByteArray(imageFilePath);
+            // Request body. Posts a locally stored JPEG image.
+            byte[] byteData = GetImageAsByteArray(imageFilePath);
 
-            //using (ByteArrayContent content = new ByteArrayContent(byteData))
-            //{
-            //    // This example uses content type "application/octet-stream".
-            //    // The other content types you can use are "application/json"
-            //    // and "multipart/form-data".
-            //    content.Headers.ContentType =
-            //        new MediaTypeHeaderValue("application/octet-stream");
+            using (ByteArrayContent content = new ByteArrayContent(byteData))
+            {
+                // This example uses content type "application/octet-stream".
+                // The other content types you can use are "application/json"
+                // and "multipart/form-data".
+                content.Headers.ContentType =
+                    new MediaTypeHeaderValue("application/octet-stream");
 
-            //    // Execute the REST API call.
-            //    response = await client.PostAsync(uri, content);
+                // Execute the REST API call.
+                response = await client.PostAsync(uri, content);
 
-            //    // Get the JSON response.
-            //    string contentString = await response.Content.ReadAsStringAsync();
+                // Get the JSON response.
+                string contentString = await response.Content.ReadAsStringAsync();
 
-            //    // Display the JSON response.
-            //    Console.WriteLine("\nResponse:\n");
-            //    string jsonStr = JsonPrettyPrint(contentString);
-            //    Console.WriteLine(jsonStr);
+                // Display the JSON response.
+                Console.WriteLine("\nResponse:\n");
+                //string jsonStr = JsonPrettyPrint(contentString);
+                //Console.WriteLine(jsonStr);
 
-            //    // Parse and Display Selective JSON Response
-            //    //Stuff JSON string return data from API into JSON object(s)
-            //    var faceCollection = JsonConvert.DeserializeObject<List<Face>>(contentString);
+                // Parse and Display Selective JSON Response
+                //Stuff JSON string return data from API into JSON object(s)
+                List<Face> faceCollection = JsonConvert.DeserializeObject<List<Face>>(contentString);
+                string faceFile = JsonConvert.SerializeObject(faceCollection);
+                File.WriteAllText(@"C:\Users\Administrator\source\repos\JARVIS2\CSC438\faces\faceCollection", faceFile);
 
-            //    // Viewing a few test cases.
-            //    foreach (var face in faceCollection)
-            //    {
-            //        Console.WriteLine("FACE_ID: {0}", face.faceId);
-            //        Console.WriteLine(face.faceAttributes.age);
-            //        foreach (var haircolor in face.faceAttributes.hair.hairColor)
-            //        {
-            //            Console.WriteLine(haircolor.color);
-            //            Console.WriteLine(haircolor.confidence);
-            //        }
+                // Viewing a few test cases.
+                foreach (var face in faceCollection)
+                {
+                    Console.WriteLine("FACE_ID: {0}", face.faceId);
+                    Console.WriteLine(face.faceAttributes.age);
+                    foreach (var haircolor in face.faceAttributes.hair.hairColor)
+                    {
+                        Console.WriteLine(haircolor.color);
+                        Console.WriteLine(haircolor.confidence);
+                    }
 
-            //    }
+                }
 
                 // Exit
                 Console.WriteLine("\nPress Enter to exit...");
-            //}
+            }
         }
         #endregion
 

@@ -26,7 +26,7 @@ namespace FileIO
             Console.WriteLine("> FileHandler class check.");
         }
 
-        public void DisplayFile(FileHandler file)
+        public void DisplayFile(string file)
         {
             Console.WriteLine(file);
         }
@@ -34,10 +34,14 @@ namespace FileIO
         public void CreateFile(string fileTxt)
         {
             //File.WriteAllText(@"C:\Users\Administrator\source\repos\JARVIS2\CSC438\contentString.txt", fileTxt);
-            string fileJSON = JsonConvert.SerializeObject(fileTxt);
-            Console.WriteLine(">> fileJSON is: {0}", fileJSON);
-            File.WriteAllText(@"C:\Users\Administrator\source\repos\JARVIS2\CSC438\contentJSON.json", fileJSON);
+            //string fileJSON = JsonConvert.SerializeObject(fileTxt);
+            //Console.WriteLine("\n>> fileJSON is: {0}", fileJSON);
+            //File.WriteAllText(@"C:\Users\Administrator\source\repos\JARVIS2\CSC438\contentJSON.json", fileJSON);
+            File.WriteAllText(@"C:\Users\Administrator\source\repos\JARVIS2\CSC438\contentJSON.json", fileTxt);
 
+            //var jo = JObject.Parse(fileTxt);
+            //var faceID = jo["faceID"].ToString();
+            //Console.WriteLine("\n> facedID: {0}", faceID);
             //////////////////////////////////////////////////
             string path = @"C:\Users\Administrator\source\repos\JARVIS2\CSC438\contentJSON.json";
             
@@ -47,8 +51,7 @@ namespace FileIO
             {
                 sb.Append(previousFile[i]);
             }
-            Console.WriteLine(">> StringBuilder sb is: {0}", sb);
-            //var jo = JObject.Parse(sb.ToString());
+            Console.WriteLine("\n>> StringBuilder sb is: {0}", sb);
             //////////////////////////////////////////////////
 
             //var faceID = jo["faceID"].ToString();
@@ -63,6 +66,10 @@ namespace FileIO
             string fileText = sr.ReadToEnd();
             sr.Close();
 
+            //DEBUG:
+            string[] fileNameParts = fileName.Split('\\');
+            int fLen = fileNameParts.Length;
+            Console.WriteLine("\n> Retrieved file: /{0}/{1}", fileNameParts[fLen - 2], fileNameParts[fLen -1]);
             return fileText;
         }
 

@@ -3,6 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>JARVIS</AssemblyName>
+    <RootNamespace>JARVIS</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +14,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Aesthetics\Aesthetics.csproj" />
     <ProjectReference Include="..\DebugTools\DebugTools.csproj" />
-    <ProjectReference Include="..\FaceDataDisplay\FaceDataDisplay.csproj" />
     <ProjectReference Include="..\FileIO\FileIO.csproj" />
   </ItemGroup>
 

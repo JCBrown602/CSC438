@@ -1,4 +1,5 @@
 # CSC438 Project
+[![Build status](https://ci.appveyor.com/api/projects/status/02twu1nyg7wmwonm?svg=true)](https://ci.appveyor.com/project/JCBrown602/csc438)
 
 University of Advancing Technology  
 CSC438 AI - FALL 2018  
