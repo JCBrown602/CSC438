@@ -13,6 +13,7 @@ namespace Aesthetics
         public string Title { get; set; } = ">>> NO TITLE GIVEN! <<<";
         public string TagLine { get; set; } = "* CSC438 *";
         public char Symbol { get; set; } = (char)22;
+        public bool Clear { get; set; } = false;
         #endregion
 
         #region Constructors

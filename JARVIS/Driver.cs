@@ -9,13 +9,12 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using Aesthetics;
 using FileIO;
-using FaceDataDisplay;
 using DebugTools;
 
 
-namespace JARVIS
+namespace GUARDIAN
 {
-    static class Program
+    static class Driver
     {
         const string subscriptionKey = "2e77aaf63e4346a8b3820d03d396624b";
 
@@ -46,7 +45,7 @@ namespace JARVIS
             xd.ShowCheck();
 
             FileHandler fh = new FileHandler();
-            FaceDisplayClass fd = new FaceDisplayClass();
+            FaceDataDisplay fd = new FaceDataDisplay();
             fd.DisplayFaceData();
 
             string fileText = fh.GetFile(imageFilePath);
@@ -82,8 +81,7 @@ namespace JARVIS
         /// <param name="imageFilePath">The image file.</param>
         static async void MakeAnalysisRequest(string imageFilePath)
         {
-            // DEBUG: Commenting out API call to reduce spamming API calls during testing.
-            // Replacing with sample file of previous API response.
+            // DEBUG: Adding some file storage capability to decrease API calls.
             FileHandler fh = new FileHandler();
             string fileText = fh.GetFile(imageFilePath);
             //fh.CreateFile(fileText);
